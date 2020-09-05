@@ -1,0 +1,9 @@
+swarm:
+  logging:
+    root-logger:
+      level: SEVERE
+    loggers:
+      org.hibernate.sql:
+        level: INFO
+      dev.marcel.application.web.resource.common.enterprise.MyLoggingFilter:
+        level: TRACE
