@@ -1,4 +1,4 @@
-package dev.marcel.caixaeletronico.model.movimentacao.intf;
+package dev.marcel.caixaeletronico.model.movimentacao;
 
 import static dev.marcel.caixaeletronico.model.cedula.Cedula.*;
 
@@ -6,22 +6,24 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.validation.ValidationException;
 
 import dev.marcel.caixaeletronico.model.cedula.Cedula;
-import dev.marcel.caixaeletronico.model.movimentacao.Movimentacao;
+import dev.marcel.caixaeletronico.model.extrato.Extrato;
 
-public interface IMovimentacaoService {
+public abstract class AbstractMovimentacaoService {
+    
+    @Inject
+    private Extrato extrato;
+    
+    public abstract boolean usaLimitesCedulas();
 
-    default boolean usaLimitesCedulas() {
-        return false;
-    }
-
-    default Map<Cedula, Long> getLimitesCedulas() {
+    public Map<Cedula, Long> getLimitesCedulas() {
         return new HashMap<>();
     }
 
-    default Long getNumeroCedula(final Cedula cedula, final Long valor) {
+    private Long getNumeroCedula(final Cedula cedula, final Long valor) {
         final Long numeroCedula = valor / cedula.getValue();
         if (usaLimitesCedulas()) {
             final Long limite = getLimitesCedulas().getOrDefault(cedula, 25L);
@@ -32,7 +34,7 @@ public interface IMovimentacaoService {
         return numeroCedula;
     }
 
-    default Movimentacao getMovimentacao(final Long valor) {
+    public Movimentacao getMovimentacao(final Long valor) {
         if (0 != (valor % 10L)) {
             throw new ValidationException("São permitidas apenas movimentações de valores multiplos de 10!");
         }
@@ -61,6 +63,15 @@ public interface IMovimentacaoService {
         if (!valor.equals(total)) {
             throw new ValidationException("Devido ao limite do número de cédulas não foi possível realizar a movimentação!");
         }
-        return new Movimentacao(LocalDateTime.now(), valor, cedulas);
+        final Movimentacao movimentacao = Movimentacao.Builder.create()
+                .dataHora(LocalDateTime.now())
+                .valor(valor).cedulas(cedulas)
+                .build();
+        atualizaExtrato(movimentacao);
+        return movimentacao;
+    }
+    
+    private void atualizaExtrato(Movimentacao movimentacao){
+        extrato.addMovimentacoes(movimentacao);
     }
 }

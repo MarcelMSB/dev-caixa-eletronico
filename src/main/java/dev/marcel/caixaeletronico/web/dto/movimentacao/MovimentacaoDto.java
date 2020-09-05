@@ -15,6 +15,9 @@ public class MovimentacaoDto {
     public Long valor;
     public Map<EnumDto, Long> cedulas;
 
+    protected MovimentacaoDto() {
+    }
+
     public LocalDateTime getDataHora() {
         return dataHora;
     }

@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import dev.marcel.caixaeletronico.model.movimentacao.Extrato;
+import dev.marcel.caixaeletronico.model.extrato.Extrato;
 import dev.marcel.caixaeletronico.web.dto.movimentacao.MovimentacaoDto;
 
 @Stateless

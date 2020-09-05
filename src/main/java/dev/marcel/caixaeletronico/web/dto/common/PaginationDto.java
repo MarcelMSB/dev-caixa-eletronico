@@ -5,10 +5,10 @@ import java.util.List;
 
 public class PaginationDto<E> {
 
-    private int limit;
-    private int offset;
-    private int total;
-    private boolean next;
+    private final int limit;
+    private final int offset;
+    private final int total;
+    private final boolean next;
     private List<E> content = new ArrayList<>();
 
     public PaginationDto(int limit, int offset, int total, boolean next, List<E> content) {

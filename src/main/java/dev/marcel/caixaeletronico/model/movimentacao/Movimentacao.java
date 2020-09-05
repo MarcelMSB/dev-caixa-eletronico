@@ -6,18 +6,12 @@ import java.util.Map;
 import dev.marcel.caixaeletronico.model.cedula.Cedula;
 
 public class Movimentacao {
-    
-    public static final String MOVIMENTACAO_SERVICE_DEFAULT = "MOVIMENTACAO_SERVICE_DEFAULT";
-    public static final String MOVIMENTACAO_SERVICE_LIMITE = "MOVIMENTACAO_SERVICE_LIMITE";
-    
-    public final LocalDateTime dataHora;
-    public final Long valor;
-    public final Map<Cedula, Long> cedulas;
 
-    public Movimentacao(LocalDateTime dataHora, Long valor, Map<Cedula, Long> cedulas) {
-        this.dataHora = dataHora;
-        this.valor = valor;
-        this.cedulas = cedulas;
+    public LocalDateTime dataHora;
+    public Long valor;
+    public Map<Cedula, Long> cedulas;
+
+    protected Movimentacao() {
     }
 
     public LocalDateTime getDataHora() {
@@ -30,5 +24,37 @@ public class Movimentacao {
 
     public Map<Cedula, Long> getCedulas() {
         return cedulas;
+    }
+
+    public static class Builder {
+
+        private final Movimentacao novimentacao;
+
+        private Builder(final Movimentacao novimentacao) {
+            this.novimentacao = novimentacao;
+        }
+
+        public static Builder create() {
+            return new Builder(new Movimentacao());
+        }
+
+        public Builder dataHora(final LocalDateTime dataHora) {
+            novimentacao.dataHora = dataHora;
+            return this;
+        }
+
+        public Builder valor(Long valor) {
+            novimentacao.valor = valor;
+            return this;
+        }
+
+        public Builder cedulas(Map<Cedula, Long> cedulas) {
+            novimentacao.cedulas = cedulas;
+            return this;
+        }
+
+        public Movimentacao build() {
+            return novimentacao;
+        }
     }
 }

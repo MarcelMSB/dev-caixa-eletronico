@@ -1,4 +1,4 @@
-package dev.marcel.caixaeletronico.model.movimentacao;
+package dev.marcel.caixaeletronico.model.extrato;
 
 import static java.util.stream.Collectors.toList;
 
@@ -8,6 +8,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 import dev.marcel.caixaeletronico.common.util.Pagination;
+import dev.marcel.caixaeletronico.model.movimentacao.Movimentacao;
 
 @ApplicationScoped
 public class Extrato {
