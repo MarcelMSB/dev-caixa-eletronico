@@ -28,6 +28,6 @@ public class ExtratoResource {
     @GET
     @Path("paginado")
     public Response pageMovimentacoes(@QueryParam("limit") @DefaultValue("10") int limit, @QueryParam("offset") @DefaultValue("0") int offset) {
-        return Response.accepted(builder.toRepresentation(extrato.getMovimentacoes(limit, offset))).build();
+        return Response.ok(builder.toRepresentation(extrato.getMovimentacoes(limit, offset))).build();
     }
 }

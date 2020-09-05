@@ -65,7 +65,8 @@ public abstract class AbstractMovimentacaoService {
         }
         final Movimentacao movimentacao = Movimentacao.Builder.create()
                 .dataHora(LocalDateTime.now())
-                .valor(valor).cedulas(cedulas)
+                .valor(valor)
+                .cedulas(cedulas)
                 .build();
         atualizaExtrato(movimentacao);
         return movimentacao;

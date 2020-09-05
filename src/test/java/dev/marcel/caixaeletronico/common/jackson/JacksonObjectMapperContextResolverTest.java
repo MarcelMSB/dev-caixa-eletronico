@@ -1,7 +1,4 @@
-package dev.marcel.application.common.jackson;
-
-import dev.marcel.caixaeletronico.common.jackson.JacksonJavaTimeModule;
-import dev.marcel.caixaeletronico.common.jackson.JacksonObjectMapperContextResolver;
+package dev.marcel.caixaeletronico.common.jackson;
 
 import org.jglue.cdiunit.CdiRunner;
 import org.junit.Test;
@@ -11,7 +8,6 @@ import javax.inject.Inject;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

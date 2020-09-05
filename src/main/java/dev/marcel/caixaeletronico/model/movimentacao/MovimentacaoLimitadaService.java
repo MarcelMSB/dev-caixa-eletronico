@@ -3,12 +3,11 @@ package dev.marcel.caixaeletronico.model.movimentacao;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 
 import dev.marcel.caixaeletronico.model.cedula.Cedula;
 
-
-@RequestScoped
+@Dependent
 public class MovimentacaoLimitadaService extends AbstractMovimentacaoService {
 
     @Override

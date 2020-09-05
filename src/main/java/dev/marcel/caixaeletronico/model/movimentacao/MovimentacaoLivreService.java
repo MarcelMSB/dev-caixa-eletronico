@@ -1,9 +1,8 @@
 package dev.marcel.caixaeletronico.model.movimentacao;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 
-
-@RequestScoped
+@Dependent
 public class MovimentacaoLivreService extends AbstractMovimentacaoService{
 
     @Override
