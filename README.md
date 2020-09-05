@@ -13,7 +13,7 @@ A aplicação foi desenvolvida usando os componentes da especificação Java EE 
 
 ### Pré-requisitos
 - Java JDK 8
-- Apache Maven 3.5.4 ou superior
+- Apache Maven 3.5.4 Acima desta versão pode dar problema com Thorntail
 
 ### Rodando
 Executar o arquivos run.sh apos o start do servidor a aplicação fica disponível em http://localhost:10000/caixa-eletronico
